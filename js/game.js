@@ -218,7 +218,7 @@ function startTask(index) {
         ppeComplete: false, acidCorrect: false
     };
     lab.clearSelection();
-    lab.configureTask({ targetVolume: task.targetVolume, stockColor: task.stockColor, dissolvedColor: task.dissolvedColor, grainColor: task.grainColor });
+    lab.configureTask({ targetVolume: task.targetVolume, stockColor: task.stockColor, dissolvedColor: task.dissolvedColor, grainColor: task.grainColor, solidChemical: isLiquidTask(task) ? null : task.chemical.formula });
     const concUnit = task.type.indexOf('PERCENTAGE') >= 0 ? '%' : 'M';
     lab.setStockLabel(isLiquidTask(task) ? 'Stok: ' + task.stockConcentration + ' ' + concUnit + ' ' + task.chemical.formula : 'Stok');
     showScreen('lab');
@@ -366,7 +366,7 @@ function renderStep4(content, task) {
 function renderStep4Solid(content, task) {
     const target = task.requiredMass;
     content.innerHTML = '<h3>Terazi — Hedef: ' + target.toFixed(2) + ' g</h3>' +
-        '<p class="muted"><strong>Spatulü sürükle:</strong> önce <strong>NaCl kavanozuna</strong> götür (kaşık dolar), sonra <strong>tartım kabının</strong> üstüne bırak. Terazi kabın içindeki taneleri anlık gösterir.</p>' +
+        '<p class="muted"><strong>Spatulü sürükle:</strong> önce <strong>' + task.chemical.formula + ' kavanozuna</strong> götür (kaşık dolar), sonra <strong>tartım kabının</strong> üstüne bırak. Terazi kabın içindeki taneleri anlık gösterir.</p>' +
         '<div class="balance-display"><span class="value" id="mass-display">0.00 g</span></div>' +
         '<div class="btn-row">' +
         '<button class="menu-btn btn-gray inline" onclick="removeMass()">Azalt (−0.5 g)</button>' +

@@ -235,6 +235,7 @@ export class Lab3D {
         this.stockColor = 0xf7e07e;
         this.dissolvedColor = 0xa8dcf7;
         this.grainColor = 0xfafafa;
+        this.solidChemical = 'NaCl';
         this.beakerVol = 60;
         this.beakerLevelY = 0.4;
         this.waterPerDrop = 1;
@@ -442,7 +443,10 @@ export class Lab3D {
         if (this.neckRing) this.neckRing.position.set(x, 2.25, z);
     }
 
-    configureTask({ targetVolume, stockColor, dissolvedColor, grainColor }) {
+    configureTask({ targetVolume, stockColor, dissolvedColor, grainColor, solidChemical }) {
+        // Kati madde kavanozu yalnizca kati-sivi gorevlerde bulunur
+        this.solidChemical = solidChemical || null;
+        if (this.solidChemical) this.saltJarLabel.element.textContent = this.solidChemical;
         this.flaskMaxVol = targetVolume;
         this.flaskStockVol = 0;
         this.flaskWaterVol = 0;
@@ -829,7 +833,7 @@ export class Lab3D {
         const show = (obj, v) => { obj.visible = v; };
         const labMode = ['weigh', 'pipette', 'transfer', 'water', 'done'].includes(mode);
         show(this.balance, mode === 'idle' || (labMode && !isLiq));
-        show(this.saltJar, mode === 'idle' || (labMode && !isLiq));
+        show(this.saltJar, this.solidChemical !== null && (mode === 'idle' || (labMode && !isLiq)));
         show(this.flask, mode === 'idle' || labMode);
         show(this.pipette, mode === 'idle' || (labMode && isLiq));
         show(this.stockBottle, mode === 'idle' || (labMode && isLiq));
