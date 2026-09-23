@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çözelti Laboratuvarı — 2D Eğitimsel Kimya Oyunu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ANA MENÜ -->
+        <div id="screen-menu" class="screen active">
+            <div class="bubbles">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+            <h1 class="game-title">ÇÖZELTİ LABORATUVARI</h1>
+            <p class="game-subtitle">2D Eğitimsel Kimya Laboratuvarı</p>
+            <div class="menu-buttons">
+                <button class="menu-btn btn-green" onclick="showScreen('tutorial')">📚 Eğitime Başla</button>
+                <button class="menu-btn btn-orange" onclick="showScreen('task-select')">🧪 Uygulama Laboratuvarı</button>
+                <button class="menu-btn btn-red" onclick="showScreen('safety')">⚠️ Güvenlik Laboratuvarı</button>
+                <button class="menu-btn btn-purple" onclick="showResults()">📊 Sonuçlar</button>
+            </div>
+            <p class="footer-text">Meslek Lisesi Laboratuvar Teknikleri</p>
+        </div>
+
+        <!-- EĞİTİM MODU -->
+        <div id="screen-tutorial" class="screen">
+            <div class="header">
+                <h2 id="tutorial-title">Eğitim Modu</h2>
+                <button class="btn-small" onclick="showScreen('menu')">🏠 Menü</button>
+            </div>
+            <div id="tutorial-content" class="content-card"></div>
+            <div class="nav-buttons">
+                <button class="btn-nav" id="btn-prev" onclick="prevLesson()">◀ Önceki</button>
+                <span id="lesson-page">1 / 3</span>
+                <button class="btn-nav" id="btn-next" onclick="nextLesson()">Sonraki ▶</button>
+            </div>
+        </div>
+
+        <!-- GÖREV SEÇİMİ -->
+        <div id="screen-task-select" class="screen">
+            <div class="header">
+                <h2>🧪 Görev Seçimi</h2>
+                <button class="btn-small" onclick="showScreen('menu')">🏠 Menü</button>
+            </div>
+            <div id="task-list" class="task-list"></div>
+        </div>
+
+        <!-- LABORATUVAR -->
+        <div id="screen-lab" class="screen">
+            <div class="lab-header">
+                <h3 id="lab-step-title">Adım 1 / 7</h3>
+                <div class="lab-info" id="lab-task-desc"></div>
+                <button class="btn-small" onclick="showScreen('menu')">🏠 Menü</button>
+            </div>
+            <div id="lab-content" class="lab-content"></div>
+        </div>
+
+        <!-- GÜVENLİK LABORATUVARI -->
+        <div id="screen-safety" class="screen">
+            <div class="header">
+                <h2>⚠️ Güvenlik Laboratuvarı</h2>
+                <button class="btn-small" onclick="showScreen('menu')">🏠 Menü</button>
+            </div>
+            <div id="safety-content" class="safety-content"></div>
+        </div>
+
+        <!-- SONUÇLAR -->
+        <div id="screen-results" class="screen">
+            <div class="header">
+                <h2>📊 Laboratuvar Sonucu</h2>
+                <button class="btn-small" onclick="showScreen('menu')">🏠 Menü</button>
+            </div>
+            <div id="results-content" class="results-content"></div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
